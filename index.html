@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>IG Tools Pro - Generador de Hashtags, Bios y Más</title>
-
-<meta name="description" content="Genera hashtags, bios, nombres y contenido para Instagram gratis.">
+<title>IG Tools Pro</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
@@ -14,41 +12,51 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: #000;
-    color: white;
+    background: #f4f4f4;
+    color: #111;
 }
 
 header {
     text-align: center;
-    padding: 15px;
-    border-bottom: 1px solid #222;
+    padding: 20px;
+    font-weight: bold;
+    background: white;
+    border-bottom: 1px solid #ddd;
 }
 
 .tabs {
     display: flex;
     overflow-x: auto;
-    border-bottom: 1px solid #222;
+    background: white;
+    border-bottom: 1px solid #ddd;
 }
 
 .tabs button {
     flex: 1;
-    padding: 10px;
-    background: none;
+    padding: 12px;
     border: none;
-    color: gray;
+    background: none;
+    font-size: 0.8rem;
+    color: #666;
 }
 
 .tabs button.active {
-    color: white;
-    border-bottom: 2px solid #0095f6;
+    color: #0095f6;
+    font-weight: bold;
 }
 
 .container {
     padding: 15px;
+    max-width: 500px;
+    margin: auto;
 }
 
 .tool {
     display: none;
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 15px;
 }
 
 .tool.active {
@@ -60,7 +68,7 @@ input, select {
     padding: 12px;
     margin-top: 10px;
     border-radius: 8px;
-    border: none;
+    border: 1px solid #ddd;
 }
 
 button {
@@ -69,103 +77,91 @@ button {
     margin-top: 10px;
     border-radius: 8px;
     border: none;
+    font-weight: bold;
 }
 
-.main { background: #0095f6; color: white; }
-.copy { background: #10b981; }
+.main {
+    background: #0095f6;
+    color: white;
+}
+
+.copy {
+    background: #10b981;
+    color: white;
+}
 
 .result {
-    background: #111;
+    background: #f9f9f9;
     padding: 10px;
     border-radius: 8px;
     margin-top: 10px;
-}
-
-/* ZONA ADS */
-.ads {
-    background: #111;
-    padding: 20px;
-    margin: 10px 0;
-    text-align: center;
-    border-radius: 10px;
+    border: 1px solid #ddd;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<h2>🚀 IG Tools Pro</h2>
-</header>
-
-<!-- ANUNCIO -->
-<div class="ads">
-📢 Espacio para anuncios (Google AdSense aquí)
-</div>
+<header>🚀 IG Tools Pro</header>
 
 <div class="tabs">
-<button onclick="tab('hashtags')" class="active">#</button>
-<button onclick="tab('nombres')">👤</button>
-<button onclick="tab('posts')">✍️</button>
-<button onclick="tab('bios')">✨</button>
-<button onclick="tab('captions')">📸</button>
-<button onclick="tab('reels')">🎬</button>
+<button onclick="tab('hashtags')" class="active"># Hashtags</button>
+<button onclick="tab('nombres')">👤 Nombres</button>
+<button onclick="tab('posts')">✍️ Posts</button>
+<button onclick="tab('bios')">✨ Bios</button>
+<button onclick="tab('captions')">📸 Captions</button>
+<button onclick="tab('reels')">🎬 Reels</button>
 </div>
 
 <div class="container">
 
 <div id="hashtags" class="tool active">
-<input id="tagInput" placeholder="Tema">
-<button class="main" onclick="genHashtags()">Generar</button>
+<input id="tagInput" placeholder="Ej: fitness">
+<button class="main" onclick="genHashtags()">Generar hashtags</button>
 <button class="copy" onclick="copiar('tagRes')">Copiar</button>
 <div id="tagRes" class="result"></div>
 </div>
 
 <div id="nombres" class="tool">
-<input id="nameInput" placeholder="Tema">
-<button class="main" onclick="genNames()">Generar</button>
+<input id="nameInput" placeholder="Ej: viajes">
+<button class="main" onclick="genNames()">Generar nombres</button>
 <button class="copy" onclick="copiar('nameRes')">Copiar</button>
 <div id="nameRes" class="result"></div>
 </div>
 
 <div id="posts" class="tool">
-<input id="postInput" placeholder="Tema">
-<button class="main" onclick="genPosts()">Generar</button>
+<input id="postInput" placeholder="Ej: moda">
+<button class="main" onclick="genPosts()">Generar ideas</button>
 <button class="copy" onclick="copiar('postRes')">Copiar</button>
 <div id="postRes" class="result"></div>
 </div>
 
 <div id="bios" class="tool">
-<input id="bioInput" placeholder="Tema">
+<input id="bioInput" placeholder="Ej: fitness">
 <select id="tono">
-<option value="pro">Pro</option>
+<option value="pro">Profesional</option>
 <option value="fun">Divertido</option>
 <option value="aesthetic">Aesthetic</option>
 </select>
-<button class="main" onclick="genBio()">Generar</button>
+<button class="main" onclick="genBio()">Generar bio</button>
 <button class="copy" onclick="copiar('bioRes')">Copiar</button>
 <div id="bioRes" class="result"></div>
 </div>
 
 <div id="captions" class="tool">
-<input id="capInput" placeholder="Tema">
-<button class="main" onclick="genCaption()">Generar</button>
+<input id="capInput" placeholder="Ej: viaje">
+<button class="main" onclick="genCaption()">Generar caption</button>
 <button class="copy" onclick="copiar('capRes')">Copiar</button>
 <div id="capRes" class="result"></div>
 </div>
 
 <div id="reels" class="tool">
-<input id="reelInput" placeholder="Tema">
-<button class="main" onclick="genReel()">Generar</button>
+<input id="reelInput" placeholder="Ej: fitness">
+<button class="main" onclick="genReel()">Generar idea</button>
 <button class="copy" onclick="copiar('reelRes')">Copiar</button>
 <div id="reelRes" class="result"></div>
 </div>
 
-</div>
-
-<!-- ANUNCIO ABAJO -->
-<div class="ads">
-💰 Aquí puedes meter afiliados o banners
 </div>
 
 <script>
@@ -216,7 +212,7 @@ reelRes.innerText=`🎬 Idea: muestra tu rutina de ${t}`;
 function copiar(id){
 let texto=document.getElementById(id).innerText;
 navigator.clipboard.writeText(texto);
-alert("Copiado 🔥");
+alert("Copiado");
 }
 </script>
 
