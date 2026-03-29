@@ -3,54 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IG Tools - Generador</title>
+    <title>Instagram Tools Pro</title>
     <style>
         body {
             background-color: #fafafa;
-            font-family: sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            margin: 0;
         }
         .container { width: 100%; max-width: 400px; }
         .tool {
             background: white;
             padding: 20px;
             margin-bottom: 20px;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             text-align: center;
             border: 1px solid #dbdbdb;
         }
-        h2 { font-size: 1.1rem; color: #333; }
+        h1 { color: #8e44ad; font-size: 1.8rem; margin-bottom: 25px; }
+        h2 { font-size: 1.1rem; color: #444; margin-top: 0; }
         input {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 6px;
+            border: 1px solid #dbdbdb;
+            border-radius: 8px;
             box-sizing: border-box;
+            background: #fafafa;
         }
         button {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             color: white;
             font-weight: bold;
             cursor: pointer;
+            transition: 0.3s;
         }
         .btn-blue { background-color: #0095f6; }
         .btn-pink { background-color: #e91e63; }
         .btn-purple { background-color: #8e44ad; }
+        button:hover { opacity: 0.8; }
         .resultado {
             margin-top: 15px;
-            padding: 10px;
+            padding: 12px;
             background: #f8f8f8;
-            border-radius: 4px;
-            font-size: 0.9rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
             min-height: 20px;
+            border: 1px dashed #ccc;
+            color: #262626;
+            word-wrap: break-word;
         }
     </style>
 </head>
@@ -61,47 +69,61 @@
     <div class="container">
         <!-- SECCIÓN HASHTAGS -->
         <div class="tool">
-            <h2>Generador de Hashtags</h2>
-            <input type="text" id="hashtagTema" placeholder="Ej: fitness">
+            <h2>#️⃣ Generador de Hashtags</h2>
+            <input type="text" id="hashtagTema" placeholder="Ej: fotografía, fitness...">
             <button class="btn-blue" onclick="generarHashtags()">Generar Hashtags</button>
-            <div class="resultado" id="hashtags"></div>
+            <div class="resultado" id="hashtags">Introduce un tema...</div>
         </div>
 
         <!-- SECCIÓN NOMBRES -->
         <div class="tool">
-            <h2>Generador de Nombres</h2>
-            <input type="text" id="nombreTema" placeholder="Ej: viajes">
+            <h2>👤 Generador de Nombres</h2>
+            <input type="text" id="nombreTema" placeholder="Ej: viajes, cocina...">
             <button class="btn-pink" onclick="generarNombres()">Generar Nombres</button>
-            <div class="resultado" id="nombres"></div>
+            <div class="resultado" id="nombres">Ideas para tu perfil...</div>
         </div>
 
         <!-- SECCIÓN POSTS -->
         <div class="tool">
-            <h2>Generador de Posts</h2>
-            <input type="text" id="temaPost" placeholder="Ej: cocina">
+            <h2>✍️ Ideas de Posts</h2>
+            <input type="text" id="temaPost" placeholder="Ej: moda, marketing...">
             <button class="btn-purple" onclick="generarPost()">Generar Post</button>
-            <div class="resultado" id="posts"></div>
+            <div class="resultado" id="posts">¿Qué publicar hoy?</div>
         </div>
     </div>
 
     <script>
         function generarHashtags() {
             let tema = document.getElementById("hashtagTema").value;
-            if(!tema) return alert("Escribe algo");
-            document.getElementById("hashtags").innerHTML = `#${tema} #instagram #viral #${tema}life`;
+            let res = document.getElementById("hashtags");
+            if(!tema.trim()) { alert("Escribe un tema"); return; }
+            res.innerHTML = "#" + tema + " #instagram #viral #" + tema + "Life #" + tema + "Lovers";
         }
 
         function generarNombres() {
             let tema = document.getElementById("nombreTema").value;
-            if(!tema) return alert("Escribe algo");
-            let ideas = [`✨ ${tema}Vibes`, `📸 Mundo${tema}`, `🚀 ${tema}Pro`].join("<br>");
-            document.getElementById("nombres").innerHTML = ideas;
+            let res = document.getElementById("nombres");
+            if(!tema.trim()) { alert("Escribe una palabra"); return; }
+            let ideas = [
+                "✨ " + tema + "Vibes",
+                "📸 Mundo" + tema,
+                "🚀 " + tema + "Pro",
+                "💫 Solo" + tema
+            ];
+            res.innerHTML = ideas.join("<br>");
         }
 
         function generarPost() {
             let tema = document.getElementById("temaPost").value;
-            if(!tema) return alert("Escribe algo");
-            document.getElementById("posts").innerHTML = `💡 Idea: Haz un vídeo mostrando tu rutina de ${tema}.`;
+            let res = document.getElementById("posts");
+            if(!tema.trim()) { alert("Escribe un tema"); return; }
+            let ideas = [
+                "💡 3 consejos sobre " + tema + " que no sabías.",
+                "🤔 ¿Por qué empecé en el mundo de " + tema + "?",
+                "✅ Mi rutina diaria de " + tema + ".",
+                "❌ Lo que NUNCA debes hacer en " + tema + "."
+            ];
+            res.innerHTML = ideas[Math.floor(Math.random() * ideas.length)];
         }
     </script>
 
