@@ -1,191 +1,156 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-<title>Generador de BIO para Instagram</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador para Instagram</title>
+    <style>
+        /* --- DISEÑO GENERAL --- */
+        body {
+            background-color: #fafafa;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            margin: 0;
+            color: #262626;
+        }
 
-<style>
-body{
-font-family: Arial;
-text-align: center;
-margin-top: 60px;
-background:#f5f5f5;
-}
+        h1 { color: #8e44ad; margin-bottom: 30px; }
 
-input{
-padding:10px;
-width:220px;
-margin:10px;
-}
+        /* --- ESTILO DE LAS HERRAMIENTAS --- */
+        .container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
 
-button{
-padding:12px 20px;
-font-size:16px;
-background:#e1306c;
-color:white;
-border:none;
-border-radius:8px;
-}
-.tool{
-background:white;
-padding:25px;
-margin:20px auto;
-border-radius:12px;
-max-width:400px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
-}
-#resultado{
-margin-top:30px;
-font-size:18px;
-font-weight:bold;
-}
-</style>
+        .tool {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border: 1px solid #dbdbdb;
+            text-align: center;
+        }
 
+        h2 { font-size: 1.1rem; margin-top: 0; color: #444; }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #dbdbdb;
+            border-radius: 8px;
+            box-sizing: border-box; /* Para que no se salga del borde */
+            background: #fafafa;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            color: white;
+        }
+
+        /* Colores diferentes para cada botón */
+        .btn-hashtags { background-color: #0095f6; }
+        .btn-nombres { background-color: #e91e63; }
+        .btn-posts { background-color: #8e44ad; }
+
+        button:hover { opacity: 0.8; }
+
+        .resultado {
+            margin-top: 15px;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            min-height: 20px;
+            word-wrap: break-word;
+        }
+    </style>
 </head>
-
 <body>
-<div class="tool">
-<h1>✨ Generador de BIO para Instagram</h1>
 
-<p>Escribe tu profesión o lo que haces</p>
+    <h1>IG Tools ✨</h1>
 
-<input id="profesion" placeholder="Ej: fotógrafa">
+    <div class="container">
+        
+        <!-- GENERADOR DE HASHTAGS -->
+        <div class="tool">
+            <h2>#️⃣ Generador de Hashtags</h2>
+            <input type="text" id="hashtagTema" placeholder="Ej: fotografía, fitness...">
+            <button class="btn-hashtags" onclick="generarHashtags()">Generar Hashtags</button>
+            <div class="resultado" id="hashtags">Aquí aparecerán tus tags...</div>
+        </div>
 
-<br>
+        <!-- GENERADOR DE NOMBRES -->
+        <div class="tool">
+            <h2>👤 Generador de Nombres</h2>
+            <input type="text" id="nombreTema" placeholder="Ej: viajes, cocina...">
+            <button class="btn-nombres" onclick="generarNombres()">Generar Nombres</button>
+            <div class="resultado" id="nombres">Ideas para tu perfil...</div>
+        </div>
 
-<button onclick="generar()">Generar BIO</button>
-<button onclick="generar()">Generar más</button>
+        <!-- GENERADOR DE POSTS -->
+        <div class="tool">
+            <h2>✍️ Ideas de Posts</h2>
+            <input type="text" id="temaPost" placeholder="Ej: moda, marketing...">
+            <button class="btn-posts" onclick="generarPost()">Generar Idea</button>
+            <div class="resultado" id="posts">¿Qué publicar hoy?</div>
+        </div>
 
-<p id="resultado"></p>
-</div>
-<script>
+    </div>
 
-function generar(){
+    <script>
+        // FUNCIÓN HASHTAGS
+        function generarHashtags() {
+            let tema = document.getElementById("hashtagTema").value;
+            let res = document.getElementById("hashtags");
+            if(tema.trim()==="") return alert("Escribe un tema");
+            
+            res.innerHTML = `#${tema} #instadaily #photooftheday #${tema}Life #${tema}Lovers`;
+        }
 
-let profesion = document.getElementById("profesion").value;
+        // FUNCIÓN NOMBRES (¡Arreglada!)
+        function generarNombres() {
+            let tema = document.getElementById("nombreTema").value;
+            let res = document.getElementById("nombres");
+            if(tema.trim()==="") return alert("Escribe una palabra");
 
-let bios = [
+            let opciones = [
+                `✨ ${tema}Vibes`,
+                `📸 Mundo${tema}`,
+                `🚀 ${tema}Pro`,
+                `💫 Solo${tema}`
+            ];
+            res.innerHTML = opciones.join("<br>");
+        }
 
-"📸 "+profesion+" apasionada | Ayudando a crear momentos únicos",
+        // FUNCIÓN POSTS
+        function generarPost() {
+            let tema = document.getElementById("temaPost").value;
+            let res = document.getElementById("posts");
+            if(tema.trim()==="") return alert("Escribe un tema");
 
-"✨ "+profesion+" | Inspirando cada día",
-
-"🚀 "+profesion+" | Construyendo sueños",
-
-"🔥 "+profesion+" | Contenido diario",
-"🌟 "+profesion+" | Amando lo que hago",
-"⚡ "+profesion+" | Energía y creatividad",
-"📈 "+profesion+" | Siempre creciendo"
-];
-
-let html = "";
-
-for(let i=0;i<bios.length;i++){
-html += "<p>"+bios[i]+" <button onclick='copiar(this)'>Copiar</button></p>";
-
-}
-
-document.getElementById("resultado").innerHTML = html;
-
-}
-function generarHashtags(){
-
-let tema = document.getElementById("hashtagTema").value;
-
-let hashtags = [
-"#"+tema,
-"#"+tema+"life",
-"#"+tema+"daily",
-"#"+tema+"lovers",
-"#"+tema+"community",
-"#"+tema+"gram",
-"#"+tema+"photo",
-"#"+tema+"style",
-"#"+tema+"trend",
-"#"+tema+"viral"
-];
-
-let html = "";
-
-for(let i=0;i<hashtags.length;i++){
-html += "<p>"+hashtags[i]+"</p>";
-}
-
-document.getElementById("hashtags").innerHTML = html;
-
-}
-</script>
-
-<br><br>
-<div class="tool">
-<h2>Generador de hashtags para Instagram</h2>
-
-<input id="hashtagTema" placeholder="Ej: fotografía">
-
-<br><br>
-
-<button onclick="generarHashtags()">Generar hashtags</button>
-
-<p id="hashtags"></p>
-<br><br>
-</div>
-<div class="tool">
-<h2>Generador de nombres para Instagram</h2>
-
-<input id="nombreTema" placeholder="Ej: viajes">
-
-<br><br>
-
-<button onclick="generarNombres()">Generar nombres</button>
-
-<p id="nombres"></p>
-</div>
-<div class="tool">
-<h2>Generador de posts para Instagram</h2>
-
-<input id="temaPost" placeholder="Ej: viajes, fitness, comida">
-
-<br><br>
-
-<button onclick="generarPost()">Generar post</button>
-
-<p id="postResultado"></p>
-
-<button onclick="copiarPost()">Copiar post</button>
-</div>
-<script>
-
-function generarPost(){
-
-let tema = document.getElementById("temaPost").value;
-
-let titulo = "🔥 3 tips sobre " + tema;
-
-let contenido =
-"1️⃣ Empieza poco a poco\n" +
-"2️⃣ Aprende cada día algo nuevo\n" +
-"3️⃣ Comparte tu progreso\n\n" +
-"Si te gusta el " + tema + " guarda este post 📌";
-
-let hashtags =
-"#" + tema + " #" + tema + "tips #" + tema + "life #insta" + tema + " #contenido";
-
-let post = titulo + "<br><br>" + contenido.replace(/\n/g,"<br>") + "<br><br>" + hashtags;
-
-document.getElementById("postResultado").innerHTML = post;
-
-}
-
-function copiarPost(){
-
-let texto = document.getElementById("postResultado").innerText;
-
-navigator.clipboard.writeText(texto);
-
-alert("Post copiado 📋");
-
-}
-
-</script>
+            let ideas = [
+                `💡 3 consejos sobre ${tema} que no sabías.`,
+                `🤔 ¿Por qué empecé en el mundo de ${tema}?`,
+                `✅ Mi rutina diaria de ${tema}.`
+            ];
+            let aleatorio = ideas[Math.floor(Math.random() * ideas.length)];
+            res.innerHTML = aleatorio;
+        }
+    </script>
 
 </body>
 </html>
+
