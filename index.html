@@ -1,131 +1,163 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Tools Pro</title>
-    <style>
-        body {
-            background-color: #fafafa;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            margin: 0;
-        }
-        .container { width: 100%; max-width: 400px; }
-        .tool {
-            background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            text-align: center;
-            border: 1px solid #dbdbdb;
-        }
-        h1 { color: #8e44ad; font-size: 1.8rem; margin-bottom: 25px; }
-        h2 { font-size: 1.1rem; color: #444; margin-top: 0; }
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #dbdbdb;
-            border-radius: 8px;
-            box-sizing: border-box;
-            background: #fafafa;
-        }
-        button {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn-blue { background-color: #0095f6; }
-        .btn-pink { background-color: #e91e63; }
-        .btn-purple { background-color: #8e44ad; }
-        button:hover { opacity: 0.8; }
-        .resultado {
-            margin-top: 15px;
-            padding: 12px;
-            background: #f8f8f8;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            min-height: 20px;
-            border: 1px dashed #ccc;
-            color: #262626;
-            word-wrap: break-word;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IG AI Tools 🚀</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #0f172a, #4c1d95);
+    color: white;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    transition: 0.3s;
+}
+
+.light {
+    background: #f3f4f6;
+    color: black;
+}
+
+.container {
+    width: 100%;
+    max-width: 420px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.tool {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(12px);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.resultado {
+    background: white;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    min-height: 40px;
+}
+</style>
 </head>
+
 <body>
 
-    <h1>IG Tools ✨</h1>
+<div class="container">
+<h1>IG AI Tools 🤖</h1>
 
-    <div class="container">
-        <!-- SECCIÓN HASHTAGS -->
-        <div class="tool">
-            <h2>#️⃣ Generador de Hashtags</h2>
-            <input type="text" id="hashtagTema" placeholder="Ej: fotografía, fitness...">
-            <button class="btn-blue" onclick="generarHashtags()">Generar Hashtags</button>
-            <div class="resultado" id="hashtags">Introduce un tema...</div>
-        </div>
+<button onclick="toggleModo()">🌙 / ☀️ Modo</button>
 
-        <!-- SECCIÓN NOMBRES -->
-        <div class="tool">
-            <h2>👤 Generador de Nombres</h2>
-            <input type="text" id="nombreTema" placeholder="Ej: viajes, cocina...">
-            <button class="btn-pink" onclick="generarNombres()">Generar Nombres</button>
-            <div class="resultado" id="nombres">Ideas para tu perfil...</div>
-        </div>
+<select id="tono">
+<option value="pro">Profesional</option>
+<option value="fun">Divertido</option>
+<option value="aesthetic">Aesthetic</option>
+<option value="influencer">Influencer</option>
+</select>
 
-        <!-- SECCIÓN POSTS -->
-        <div class="tool">
-            <h2>✍️ Ideas de Posts</h2>
-            <input type="text" id="temaPost" placeholder="Ej: moda, marketing...">
-            <button class="btn-purple" onclick="generarPost()">Generar Post</button>
-            <div class="resultado" id="posts">¿Qué publicar hoy?</div>
-        </div>
-    </div>
+<input id="tema" placeholder="Ej: fitness, viajes...">
 
-    <script>
-        function generarHashtags() {
-            let tema = document.getElementById("hashtagTema").value;
-            let res = document.getElementById("hashtags");
-            if(!tema.trim()) { alert("Escribe un tema"); return; }
-            res.innerHTML = "#" + tema + " #instagram #viral #" + tema + "Life #" + tema + "Lovers";
-        }
+<div class="tool">
+<h2>✨ Bio Generator IA</h2>
+<button onclick="generarBio()">Generar Bio</button>
+<button onclick="copiar()">Copiar</button>
+<button onclick="descargar()">Descargar Imagen</button>
+<div id="bio" class="resultado"></div>
+</div>
 
-        function generarNombres() {
-            let tema = document.getElementById("nombreTema").value;
-            let res = document.getElementById("nombres");
-            if(!tema.trim()) { alert("Escribe una palabra"); return; }
-            let ideas = [
-                "✨ " + tema + "Vibes",
-                "📸 Mundo" + tema,
-                "🚀 " + tema + "Pro",
-                "💫 Solo" + tema
-            ];
-            res.innerHTML = ideas.join("<br>");
-        }
+<div class="tool">
+<h2>📜 Historial</h2>
+<div id="historial"></div>
+</div>
 
-        function generarPost() {
-            let tema = document.getElementById("temaPost").value;
-            let res = document.getElementById("posts");
-            if(!tema.trim()) { alert("Escribe un tema"); return; }
-            let ideas = [
-                "💡 3 consejos sobre " + tema + " que no sabías.",
-                "🤔 ¿Por qué empecé en el mundo de " + tema + "?",
-                "✅ Mi rutina diaria de " + tema + ".",
-                "❌ Lo que NUNCA debes hacer en " + tema + "."
-            ];
-            res.innerHTML = ideas[Math.floor(Math.random() * ideas.length)];
-        }
-    </script>
+</div>
+
+<script>
+function toggleModo(){
+    document.body.classList.toggle("light");
+}
+
+function generarBio(){
+    let tema = document.getElementById("tema").value;
+    let tono = document.getElementById("tono").value;
+
+    if(!tema) return alert("Escribe algo");
+
+    let bios = {
+        pro: `🚀 Experto en ${tema} | Creciendo cada día 📈`,
+        fun: `😂 Viviendo la vida con ${tema} 🔥`,
+        aesthetic: `✨ ${tema} vibes only 🌙`,
+        influencer: `📸 Compartiendo mi mundo de ${tema} 💫`
+    };
+
+    let resultado = bios[tono];
+
+    document.getElementById("bio").innerText = resultado;
+
+    guardarHistorial(resultado);
+}
+
+function copiar(){
+    let texto = document.getElementById("bio").innerText;
+    navigator.clipboard.writeText(texto);
+    alert("Copiado 🔥");
+}
+
+function descargar(){
+    html2canvas(document.getElementById("bio")).then(canvas => {
+        let link = document.createElement("a");
+        link.download = "bio.png";
+        link.href = canvas.toDataURL();
+        link.click();
+    });
+}
+
+function guardarHistorial(texto){
+    let historial = JSON.parse(localStorage.getItem("historial")) || [];
+    historial.unshift(texto);
+    localStorage.setItem("historial", JSON.stringify(historial));
+    mostrarHistorial();
+}
+
+function mostrarHistorial(){
+    let historial = JSON.parse(localStorage.getItem("historial")) || [];
+    document.getElementById("historial").innerHTML =
+        historial.map(h => `<div>${h}</div>`).join("");
+}
+
+window.onload = mostrarHistorial;
+</script>
 
 </body>
 </html>
