@@ -1,150 +1,38 @@
 
-    "#"<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
-<title>Generador de BIO para Instagram</title>
+    <meta charset="UTF-8">
+    <title>Generador de BIO para Instagram</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 40px;
+            /* He puesto un color de fondo gris claro para que se vea el texto, 
+               puedes cambiarlo por tu gradiente después */
+            background: #f0f0f0; 
+            color: white;
+        }
 
-<style>
-body{
-    font-family: Arial;
-    text-align: center;
-    margin-top: 40px;
-    background: linear-gradient(135deg, #fd297b, #ff5864, #ff655b);
-    color: white;
-}
-
-.card{
-    background: white;
-    color: black;
-    padding: 20px;
-    margin: 20px auto;
-    border-radius: 20px;
-    width: 300px;
-}
-
-input{
-    padding: 10px;
-    width: 80%;
-    margin: 10px;
-    border-radius: 10px;
-    border: none;
-}
-
-button{
-    padding: 10px 20px;
-    background: #E1306C;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-}
-
-#resultado, #hashtags, #postResultado{
-    margin-top: 15px;
-    font-weight: bold;
-}
-</style>
-
+        .tarjeta {
+            background: white;
+            color: black;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
-
 <body>
 
-<h1>✨ Generador para Instagram</h1>
-
-<div class="card">
-    <h2>BIO</h2>
-    <input id="profesion" placeholder="Tu profesión">
-    <br>
-    <button onclick="generar()">Generar</button>
-    <div id="resultado"></div>
-</div>
-
-<div class="card">
-    <h2>Hashtags</h2>
-    <input id="tema" placeholder="Tema">
-    <br>
-    <button onclick="generarHashtags()">Generar</button>
-    <div id="hashtags"></div>
-</div>
-
-<div class="card">
-    <h2>Post</h2>
-    <input id="temaPost" placeholder="Tema del post">
-    <br>
-    <button onclick="generarPost()">Generar</button>
-    <div id="postResultado"></div>
-    <br>
-    <button onclick="copiarPost()">Copiar</button>
-</div>
-
-<script>
-
-function generar(){
-    let profesion = document.getElementById("profesion").value;
-
-    let bios = [
-        "📸 " + profesion + " apasionada | Ayudando a crecer",
-        "✨ " + profesion + " | Inspirando cada día",
-        "🚀 " + profesion + " | Construyendo sueños",
-        "🔥 " + profesion + " | Contenido diario",
-        "💡 " + profesion + " | Creatividad sin límites"
-    ];
-
-    let random = Math.floor(Math.random() * bios.length);
-    document.getElementById("resultado").innerText = bios[random];
-}
-
-function generarHashtags(){
-    let tema = document.getElementById("tema").value;
-
-    let hashtags = 
-    "#" + tema + " #" + tema + "vida #" + tema + "tips #" + tema + "love #" + tema + "daily";
-
-    document.getElementById("hashtags").innerText = hashtags;
-}
-
-function generarPost(){
-    let tema = document.getElementById("temaPost").value;
-
-    let post = 
-    "🔥 3 consejos sobre " + tema + "\n\n" +
-    "1️⃣ Empieza poco a poco\n" +
-    "2️⃣ Aprende cada día\n" +
-    "3️⃣ Comparte tu progreso\n\n" +
-    "Guarda este post si te sirve 🙌";
-
-    document.getElementById("postResultado").innerText = post;
-}
-
-function copiarPost(){
-    let texto = document.getElementById("postResultado").innerText;
-    navigator.clipboard.writeText(texto);
-    alert("Post copiado 📋");
-}
-
-</script>
-
-</body>
-</html> + tema + "love",
-    "#" + tema + "community"
-  ];
-
-  document.getElementById("hashtags").innerHTML = tags.join(" ");
-}
-
-function generarPost() {
-  let tema = document.getElementById("temaPost").value;
-
-  let post =
-    "🔥 3 consejos sobre " + tema + "<br><br>" +
-    "1️⃣ Empieza hoy<br>" +
-    "2️⃣ Sé constante<br>" +
-    "3️⃣ Cree en ti<br><br>" +
-    "Guarda este post si te sirve 🙌";
-
-  document.getElementById("post").innerHTML = post;
-}
-</script>
+    <div class="tarjeta">
+        <h1>Mi Bio de Instagram</h1>
+        <p>Aquí irá el contenido de tu generador.</p>
+    </div>
 
 </body>
 </html>
