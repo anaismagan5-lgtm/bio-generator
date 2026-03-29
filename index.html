@@ -3,160 +3,221 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IG AI Tools 🚀</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>IG Tools Pro - Generador de Hashtags, Bios y Más</title>
 
-<script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+<meta name="description" content="Genera hashtags, bios, nombres y contenido para Instagram gratis.">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
 <style>
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #0f172a, #4c1d95);
+    background: #000;
     color: white;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    transition: 0.3s;
 }
 
-.light {
-    background: #f3f4f6;
-    color: black;
+header {
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid #222;
+}
+
+.tabs {
+    display: flex;
+    overflow-x: auto;
+    border-bottom: 1px solid #222;
+}
+
+.tabs button {
+    flex: 1;
+    padding: 10px;
+    background: none;
+    border: none;
+    color: gray;
+}
+
+.tabs button.active {
+    color: white;
+    border-bottom: 2px solid #0095f6;
 }
 
 .container {
-    width: 100%;
-    max-width: 420px;
-}
-
-h1 {
-    text-align: center;
+    padding: 15px;
 }
 
 .tool {
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(12px);
-    padding: 20px;
-    border-radius: 15px;
-    margin-bottom: 20px;
+    display: none;
+}
+
+.tool.active {
+    display: block;
 }
 
 input, select {
     width: 100%;
     padding: 12px;
-    border-radius: 10px;
-    border: none;
     margin-top: 10px;
+    border-radius: 8px;
+    border: none;
 }
 
 button {
     width: 100%;
     padding: 12px;
     margin-top: 10px;
+    border-radius: 8px;
     border: none;
-    border-radius: 10px;
-    font-weight: bold;
-    cursor: pointer;
 }
 
-.resultado {
-    background: white;
-    color: black;
+.main { background: #0095f6; color: white; }
+.copy { background: #10b981; }
+
+.result {
+    background: #111;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 8px;
     margin-top: 10px;
-    min-height: 40px;
+}
+
+/* ZONA ADS */
+.ads {
+    background: #111;
+    padding: 20px;
+    margin: 10px 0;
+    text-align: center;
+    border-radius: 10px;
 }
 </style>
 </head>
 
 <body>
 
+<header>
+<h2>🚀 IG Tools Pro</h2>
+</header>
+
+<!-- ANUNCIO -->
+<div class="ads">
+📢 Espacio para anuncios (Google AdSense aquí)
+</div>
+
+<div class="tabs">
+<button onclick="tab('hashtags')" class="active">#</button>
+<button onclick="tab('nombres')">👤</button>
+<button onclick="tab('posts')">✍️</button>
+<button onclick="tab('bios')">✨</button>
+<button onclick="tab('captions')">📸</button>
+<button onclick="tab('reels')">🎬</button>
+</div>
+
 <div class="container">
-<h1>IG AI Tools 🤖</h1>
 
-<button onclick="toggleModo()">🌙 / ☀️ Modo</button>
+<div id="hashtags" class="tool active">
+<input id="tagInput" placeholder="Tema">
+<button class="main" onclick="genHashtags()">Generar</button>
+<button class="copy" onclick="copiar('tagRes')">Copiar</button>
+<div id="tagRes" class="result"></div>
+</div>
 
+<div id="nombres" class="tool">
+<input id="nameInput" placeholder="Tema">
+<button class="main" onclick="genNames()">Generar</button>
+<button class="copy" onclick="copiar('nameRes')">Copiar</button>
+<div id="nameRes" class="result"></div>
+</div>
+
+<div id="posts" class="tool">
+<input id="postInput" placeholder="Tema">
+<button class="main" onclick="genPosts()">Generar</button>
+<button class="copy" onclick="copiar('postRes')">Copiar</button>
+<div id="postRes" class="result"></div>
+</div>
+
+<div id="bios" class="tool">
+<input id="bioInput" placeholder="Tema">
 <select id="tono">
-<option value="pro">Profesional</option>
+<option value="pro">Pro</option>
 <option value="fun">Divertido</option>
 <option value="aesthetic">Aesthetic</option>
-<option value="influencer">Influencer</option>
 </select>
-
-<input id="tema" placeholder="Ej: fitness, viajes...">
-
-<div class="tool">
-<h2>✨ Bio Generator IA</h2>
-<button onclick="generarBio()">Generar Bio</button>
-<button onclick="copiar()">Copiar</button>
-<button onclick="descargar()">Descargar Imagen</button>
-<div id="bio" class="resultado"></div>
+<button class="main" onclick="genBio()">Generar</button>
+<button class="copy" onclick="copiar('bioRes')">Copiar</button>
+<div id="bioRes" class="result"></div>
 </div>
 
-<div class="tool">
-<h2>📜 Historial</h2>
-<div id="historial"></div>
+<div id="captions" class="tool">
+<input id="capInput" placeholder="Tema">
+<button class="main" onclick="genCaption()">Generar</button>
+<button class="copy" onclick="copiar('capRes')">Copiar</button>
+<div id="capRes" class="result"></div>
 </div>
 
+<div id="reels" class="tool">
+<input id="reelInput" placeholder="Tema">
+<button class="main" onclick="genReel()">Generar</button>
+<button class="copy" onclick="copiar('reelRes')">Copiar</button>
+<div id="reelRes" class="result"></div>
+</div>
+
+</div>
+
+<!-- ANUNCIO ABAJO -->
+<div class="ads">
+💰 Aquí puedes meter afiliados o banners
 </div>
 
 <script>
-function toggleModo(){
-    document.body.classList.toggle("light");
+function tab(id){
+document.querySelectorAll('.tool').forEach(t=>t.classList.remove('active'));
+document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+event.target.classList.add('active');
 }
 
-function generarBio(){
-    let tema = document.getElementById("tema").value;
-    let tono = document.getElementById("tono").value;
-
-    if(!tema) return alert("Escribe algo");
-
-    let bios = {
-        pro: `🚀 Experto en ${tema} | Creciendo cada día 📈`,
-        fun: `😂 Viviendo la vida con ${tema} 🔥`,
-        aesthetic: `✨ ${tema} vibes only 🌙`,
-        influencer: `📸 Compartiendo mi mundo de ${tema} 💫`
-    };
-
-    let resultado = bios[tono];
-
-    document.getElementById("bio").innerText = resultado;
-
-    guardarHistorial(resultado);
+function genHashtags(){
+let t=tagInput.value;
+tagRes.innerText=`#${t} #${t}life #${t}lover #viral #instagood`;
 }
 
-function copiar(){
-    let texto = document.getElementById("bio").innerText;
-    navigator.clipboard.writeText(texto);
-    alert("Copiado 🔥");
+function genNames(){
+let t=nameInput.value;
+nameRes.innerHTML=`${t}Pro<br>Mundo${t}<br>${t}Vibes`;
 }
 
-function descargar(){
-    html2canvas(document.getElementById("bio")).then(canvas => {
-        let link = document.createElement("a");
-        link.download = "bio.png";
-        link.href = canvas.toDataURL();
-        link.click();
-    });
+function genPosts(){
+let t=postInput.value;
+let ideas=[`💡 Tips de ${t}`,`🔥 Sobre ${t}`,`❌ Errores en ${t}`];
+postRes.innerText=ideas[Math.floor(Math.random()*ideas.length)];
 }
 
-function guardarHistorial(texto){
-    let historial = JSON.parse(localStorage.getItem("historial")) || [];
-    historial.unshift(texto);
-    localStorage.setItem("historial", JSON.stringify(historial));
-    mostrarHistorial();
+function genBio(){
+let t=bioInput.value;
+let tono=tono.value;
+let bios={
+pro:`🚀 Experto en ${t}`,
+fun:`😂 Viviendo ${t}`,
+aesthetic:`✨ ${t} vibes`
+};
+bioRes.innerText=bios[tono];
 }
 
-function mostrarHistorial(){
-    let historial = JSON.parse(localStorage.getItem("historial")) || [];
-    document.getElementById("historial").innerHTML =
-        historial.map(h => `<div>${h}</div>`).join("");
+function genCaption(){
+let t=capInput.value;
+capRes.innerText=`📸 Viviendo ${t} al máximo 🔥`;
 }
 
-window.onload = mostrarHistorial;
+function genReel(){
+let t=reelInput.value;
+reelRes.innerText=`🎬 Idea: muestra tu rutina de ${t}`;
+}
+
+function copiar(id){
+let texto=document.getElementById(id).innerText;
+navigator.clipboard.writeText(texto);
+alert("Copiado 🔥");
+}
 </script>
 
 </body>
