@@ -1,100 +1,131 @@
-<!DOCTYPE html>
+
+    "#"<!DOCTYPE html>
 <html>
 <head>
-  <title>Generador de BIO</title>
-  <style>
-    body {
-      font-family: Arial;
-      text-align: center;
-      margin-top: 50px;
-      background: #111;
-      color: white;
-    }
+<title>Generador de BIO para Instagram</title>
 
-    input {
-      padding: 10px;
-      margin: 10px;
-      width: 200px;
-      border-radius: 10px;
-      border: none;
-    }
+<style>
+body{
+    font-family: Arial;
+    text-align: center;
+    margin-top: 40px;
+    background: linear-gradient(135deg, #fd297b, #ff5864, #ff655b);
+    color: white;
+}
 
-    button {
-      padding: 10px 20px;
-      background: #E1306C;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      cursor: pointer;
-      margin: 5px;
-    }
+.card{
+    background: white;
+    color: black;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 20px;
+    width: 300px;
+}
 
-    .box {
-      background: white;
-      color: black;
-      padding: 20px;
-      border-radius: 15px;
-      margin: 20px auto;
-      max-width: 400px;
-    }
-  </style>
+input{
+    padding: 10px;
+    width: 80%;
+    margin: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+button{
+    padding: 10px 20px;
+    background: #E1306C;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#resultado, #hashtags, #postResultado{
+    margin-top: 15px;
+    font-weight: bold;
+}
+</style>
+
 </head>
 
 <body>
 
 <h1>✨ Generador para Instagram</h1>
 
-<div class="box">
-  <h2>BIO</h2>
-  <input id="profesion" placeholder="Tu profesión">
-  <br>
-  <button onclick="generarBio()">Generar</button>
-  <div id="resultado"></div>
+<div class="card">
+    <h2>BIO</h2>
+    <input id="profesion" placeholder="Tu profesión">
+    <br>
+    <button onclick="generar()">Generar</button>
+    <div id="resultado"></div>
 </div>
 
-<div class="box">
-  <h2>Hashtags</h2>
-  <input id="tema" placeholder="Tema">
-  <br>
-  <button onclick="generarHashtags()">Generar</button>
-  <div id="hashtags"></div>
+<div class="card">
+    <h2>Hashtags</h2>
+    <input id="tema" placeholder="Tema">
+    <br>
+    <button onclick="generarHashtags()">Generar</button>
+    <div id="hashtags"></div>
 </div>
 
-<div class="box">
-  <h2>Post</h2>
-  <input id="temaPost" placeholder="Tema del post">
-  <br>
-  <button onclick="generarPost()">Generar</button>
-  <div id="post"></div>
+<div class="card">
+    <h2>Post</h2>
+    <input id="temaPost" placeholder="Tema del post">
+    <br>
+    <button onclick="generarPost()">Generar</button>
+    <div id="postResultado"></div>
+    <br>
+    <button onclick="copiarPost()">Copiar</button>
 </div>
 
 <script>
-function generarBio() {
-  let profesion = document.getElementById("profesion").value;
 
-  let bios = [
-    "✨ " + profesion + " | Inspirando cada día",
-    "🚀 " + profesion + " | Creciendo sin límites",
-    "🔥 " + profesion + " | Pasión por lo que hago",
-    "💡 " + profesion + " | Ideas que suman"
-  ];
+function generar(){
+    let profesion = document.getElementById("profesion").value;
 
-  let resultado = "";
-  for (let i = 0; i < bios.length; i++) {
-    resultado += "<p>" + bios[i] + "</p>";
-  }
+    let bios = [
+        "📸 " + profesion + " apasionada | Ayudando a crecer",
+        "✨ " + profesion + " | Inspirando cada día",
+        "🚀 " + profesion + " | Construyendo sueños",
+        "🔥 " + profesion + " | Contenido diario",
+        "💡 " + profesion + " | Creatividad sin límites"
+    ];
 
-  document.getElementById("resultado").innerHTML = resultado;
+    let random = Math.floor(Math.random() * bios.length);
+    document.getElementById("resultado").innerText = bios[random];
 }
 
-function generarHashtags() {
-  let tema = document.getElementById("tema").value;
+function generarHashtags(){
+    let tema = document.getElementById("tema").value;
 
-  let tags = [
-    "#" + tema,
-    "#" + tema + "life",
-    "#" + tema + "daily",
-    "#" + tema + "love",
+    let hashtags = 
+    "#" + tema + " #" + tema + "vida #" + tema + "tips #" + tema + "love #" + tema + "daily";
+
+    document.getElementById("hashtags").innerText = hashtags;
+}
+
+function generarPost(){
+    let tema = document.getElementById("temaPost").value;
+
+    let post = 
+    "🔥 3 consejos sobre " + tema + "\n\n" +
+    "1️⃣ Empieza poco a poco\n" +
+    "2️⃣ Aprende cada día\n" +
+    "3️⃣ Comparte tu progreso\n\n" +
+    "Guarda este post si te sirve 🙌";
+
+    document.getElementById("postResultado").innerText = post;
+}
+
+function copiarPost(){
+    let texto = document.getElementById("postResultado").innerText;
+    navigator.clipboard.writeText(texto);
+    alert("Post copiado 📋");
+}
+
+</script>
+
+</body>
+</html> + tema + "love",
     "#" + tema + "community"
   ];
 
