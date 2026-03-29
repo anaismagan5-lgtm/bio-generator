@@ -30,9 +30,15 @@
 <body>
 
     <div class="tarjeta">
-        <h1>Mi Bio de Instagram</h1>
-        <p>Aquí irá el contenido de tu generador.</p>
-    </div>
+    <h1>Mi Bio de Instagram</h1>
+    <p>Escribe tu nombre:</p>
+    <input type="text" id="nombre" placeholder="Ej. Ana">
+    
+    <p>Cuéntanos sobre ti:</p>
+    <textarea id="descripcion" placeholder="Ej. Amante de la fotografía..."></textarea>
+    
+    <button onclick="generarBio()">Generar Bio</button>
 
-</body>
-</html>
+    <div id="resultado" style="margin-top: 20px; font-weight: bold;"></div>
+</div>
+
