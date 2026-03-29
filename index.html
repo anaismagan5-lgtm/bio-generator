@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>IG Tools Pro</title>
+<meta name="description" content="Generador de hashtags, bios, captions y más para Instagram">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
@@ -12,18 +13,19 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background: #f4f4f4;
-    color: #111;
+    background: #fafafa;
 }
 
+/* HEADER INSTAGRAM STYLE */
 header {
     text-align: center;
-    padding: 20px;
+    padding: 15px;
+    color: white;
     font-weight: bold;
-    background: white;
-    border-bottom: 1px solid #ddd;
+    background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
 }
 
+/* TABS */
 .tabs {
     display: flex;
     overflow-x: auto;
@@ -33,7 +35,7 @@ header {
 
 .tabs button {
     flex: 1;
-    padding: 12px;
+    padding: 10px;
     border: none;
     background: none;
     font-size: 0.8rem;
@@ -41,10 +43,11 @@ header {
 }
 
 .tabs button.active {
-    color: #0095f6;
+    color: #dd2a7b;
     font-weight: bold;
 }
 
+/* CONTENIDO */
 .container {
     padding: 15px;
     max-width: 500px;
@@ -57,6 +60,7 @@ header {
     padding: 15px;
     border-radius: 12px;
     margin-top: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
 
 .tool.active {
@@ -71,6 +75,7 @@ input, select {
     border: 1px solid #ddd;
 }
 
+/* BOTONES */
 button {
     width: 100%;
     padding: 12px;
@@ -81,7 +86,7 @@ button {
 }
 
 .main {
-    background: #0095f6;
+    background: linear-gradient(45deg, #f58529, #dd2a7b);
     color: white;
 }
 
@@ -90,6 +95,7 @@ button {
     color: white;
 }
 
+/* RESULTADO */
 .result {
     background: #f9f9f9;
     padding: 10px;
@@ -97,12 +103,28 @@ button {
     margin-top: 10px;
     border: 1px solid #ddd;
 }
+
+/* ANUNCIOS */
+.ads {
+    background: #fff;
+    margin: 10px;
+    padding: 15px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px dashed #ccc;
+    font-size: 0.9rem;
+}
 </style>
 </head>
 
 <body>
 
-<header>🚀 IG Tools Pro</header>
+<header>📱 IG Tools Pro</header>
+
+<!-- ANUNCIO SUPERIOR -->
+<div class="ads">
+👉 Aquí va tu anuncio de Google AdSense
+</div>
 
 <div class="tabs">
 <button onclick="tab('hashtags')" class="active"># Hashtags</button>
@@ -162,6 +184,11 @@ button {
 <div id="reelRes" class="result"></div>
 </div>
 
+</div>
+
+<!-- ANUNCIO INFERIOR -->
+<div class="ads">
+💰 Aquí puedes poner afiliados o banners
 </div>
 
 <script>
