@@ -1,44 +1,191 @@
-
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Generador de BIO para Instagram</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 40px;
-            /* He puesto un color de fondo gris claro para que se vea el texto, 
-               puedes cambiarlo por tu gradiente después */
-            background: #f0f0f0; 
-            color: white;
-        }
+<title>Generador de BIO para Instagram</title>
 
-        .tarjeta {
-            background: white;
-            color: black;
-            padding: 20px;
-            margin: 20px auto;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 400px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-    </style>
+<style>
+body{
+font-family: Arial;
+text-align: center;
+margin-top: 60px;
+background:#f5f5f5;
+}
+
+input{
+padding:10px;
+width:220px;
+margin:10px;
+}
+
+button{
+padding:12px 20px;
+font-size:16px;
+background:#e1306c;
+color:white;
+border:none;
+border-radius:8px;
+}
+.tool{
+background:white;
+padding:25px;
+margin:20px auto;
+border-radius:12px;
+max-width:400px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+#resultado{
+margin-top:30px;
+font-size:18px;
+font-weight:bold;
+}
+</style>
+
 </head>
+
 <body>
+<div class="tool">
+<h1>✨ Generador de BIO para Instagram</h1>
 
-    <div class="tarjeta">
-    <h1>Mi Bio de Instagram</h1>
-    <p>Escribe tu nombre:</p>
-    <input type="text" id="nombre" placeholder="Ej. Ana">
-    
-    <p>Cuéntanos sobre ti:</p>
-    <textarea id="descripcion" placeholder="Ej. Amante de la fotografía..."></textarea>
-    
-    <button onclick="generarBio()">Generar Bio</button>
+<p>Escribe tu profesión o lo que haces</p>
 
-    <div id="resultado" style="margin-top: 20px; font-weight: bold;"></div>
+<input id="profesion" placeholder="Ej: fotógrafa">
+
+<br>
+
+<button onclick="generar()">Generar BIO</button>
+<button onclick="generar()">Generar más</button>
+
+<p id="resultado"></p>
 </div>
+<script>
 
+function generar(){
+
+let profesion = document.getElementById("profesion").value;
+
+let bios = [
+
+"📸 "+profesion+" apasionada | Ayudando a crear momentos únicos",
+
+"✨ "+profesion+" | Inspirando cada día",
+
+"🚀 "+profesion+" | Construyendo sueños",
+
+"🔥 "+profesion+" | Contenido diario",
+"🌟 "+profesion+" | Amando lo que hago",
+"⚡ "+profesion+" | Energía y creatividad",
+"📈 "+profesion+" | Siempre creciendo"
+];
+
+let html = "";
+
+for(let i=0;i<bios.length;i++){
+html += "<p>"+bios[i]+" <button onclick='copiar(this)'>Copiar</button></p>";
+
+}
+
+document.getElementById("resultado").innerHTML = html;
+
+}
+function generarHashtags(){
+
+let tema = document.getElementById("hashtagTema").value;
+
+let hashtags = [
+"#"+tema,
+"#"+tema+"life",
+"#"+tema+"daily",
+"#"+tema+"lovers",
+"#"+tema+"community",
+"#"+tema+"gram",
+"#"+tema+"photo",
+"#"+tema+"style",
+"#"+tema+"trend",
+"#"+tema+"viral"
+];
+
+let html = "";
+
+for(let i=0;i<hashtags.length;i++){
+html += "<p>"+hashtags[i]+"</p>";
+}
+
+document.getElementById("hashtags").innerHTML = html;
+
+}
+</script>
+
+<br><br>
+<div class="tool">
+<h2>Generador de hashtags para Instagram</h2>
+
+<input id="hashtagTema" placeholder="Ej: fotografía">
+
+<br><br>
+
+<button onclick="generarHashtags()">Generar hashtags</button>
+
+<p id="hashtags"></p>
+<br><br>
+</div>
+<div class="tool">
+<h2>Generador de nombres para Instagram</h2>
+
+<input id="nombreTema" placeholder="Ej: viajes">
+
+<br><br>
+
+<button onclick="generarNombres()">Generar nombres</button>
+
+<p id="nombres"></p>
+</div>
+<div class="tool">
+<h2>Generador de posts para Instagram</h2>
+
+<input id="temaPost" placeholder="Ej: viajes, fitness, comida">
+
+<br><br>
+
+<button onclick="generarPost()">Generar post</button>
+
+<p id="postResultado"></p>
+
+<button onclick="copiarPost()">Copiar post</button>
+</div>
+<script>
+
+function generarPost(){
+
+let tema = document.getElementById("temaPost").value;
+
+let titulo = "🔥 3 tips sobre " + tema;
+
+let contenido =
+"1️⃣ Empieza poco a poco\n" +
+"2️⃣ Aprende cada día algo nuevo\n" +
+"3️⃣ Comparte tu progreso\n\n" +
+"Si te gusta el " + tema + " guarda este post 📌";
+
+let hashtags =
+"#" + tema + " #" + tema + "tips #" + tema + "life #insta" + tema + " #contenido";
+
+let post = titulo + "<br><br>" + contenido.replace(/\n/g,"<br>") + "<br><br>" + hashtags;
+
+document.getElementById("postResultado").innerHTML = post;
+
+}
+
+function copiarPost(){
+
+let texto = document.getElementById("postResultado").innerText;
+
+navigator.clipboard.writeText(texto);
+
+alert("Post copiado 📋");
+
+}
+
+</script>
+
+</body>
+</html>
